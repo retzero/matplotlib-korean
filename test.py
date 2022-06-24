@@ -6,7 +6,7 @@ import matplotlib.font_manager as fm
 from matplotlib import matplotlib_fname, get_cachedir, rc
 
 
-font_path = './NanumGothicCoding-Regular.ttf'
+font_path = './NanumGothicCoding.ttf'
 fonts_dir = os.path.join(os.path.dirname(matplotlib_fname()), 'fonts', 'ttf')
 target_fonts_path = os.path.join(fonts_dir, font_path)
 
