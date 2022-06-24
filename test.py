@@ -5,11 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
 
-font_path = './NanumGothicCoding-Bold.ttf'
-if not os.path.isfile(font_path):
-    print('No font file found')
-    sys.exit(1)
-
+font_path = './NanumGothicCoding.ttf'
 fm.fontManager.addfont(font_path)
 font_name = fm.FontProperties(fname=font_path).get_name()
 plt.rcParams['font.family'] = font_name
