@@ -1,28 +1,28 @@
 import os
-import shutil
+import sys
 
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
-from matplotlib import matplotlib_fname, get_cachedir, rc
 
 
 font_path = './NanumGothicCoding.ttf'
-fonts_dir = os.path.join(os.path.dirname(matplotlib_fname()), 'fonts', 'ttf')
-target_fonts_path = os.path.join(fonts_dir, font_path)
+if not os.path.isfile(font_path):
+    print('No font file found')
+    sys.exit(0)
+font_name = fm.FontProperties(fname=font_path).get_name()
 
-# 여기는 한번만 실행하면 됨.
-if not os.path.isfile(target_fonts_path):
-    font_cache_dir = get_cachedir()
-    shutil.rmtree(font_cache_dir)
-    shutil.copyfile(font_path, target_fonts_path)
-    fontlist = fm.findSystemFonts(fontpaths=os.getcwd(), fontext='ttf')
+font_files = fm.findSystemFonts(fontpaths=[os.getcwd()])
+for font_file in font_files:
+    fm.fontManager.addfont(font_file)
+plt.rcParams['font.family'] = font_name
 
+# 테스트
 if True:
-    font_name = fm.FontProperties(fname=target_fonts_path).get_name()
-    rc('font', family=font_name)
-
     time_list = [18.1, 6.3, 7.2, 5.5]
     labels = ['08시', '09시', '10시', '11시']
 
+    plt.title('타이틀 입니다.')
+    plt.xlabel('X축 라벨')
+    plt.ylabel('Y축 ')
     plt.pie(time_list, labels=labels, startangle=120)
     plt.show()
