@@ -1,14 +1,14 @@
 import os
 import shutil
+
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
-from matplotlib import rc
+from matplotlib import matplotlib_fname, get_cachedir, rc
 
-import matplotlib as mpl
 
 font_path = './NanumGothicCoding.ttf'
-fonts_dir = os.path.join(os.path.dirname(mpl.matplotlib_fname()), 'fonts', 'ttf')
-font_cache_dir = mpl.get_cachedir()
+fonts_dir = os.path.join(os.path.dirname(matplotlib_fname()), 'fonts', 'ttf')
+font_cache_dir = get_cachedir()
 shutil.rmtree(font_cache_dir)
 
 shutil.copyfile(font_path, os.path.join(fonts_dir, font_path))
