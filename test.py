@@ -5,13 +5,14 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 from matplotlib import matplotlib_fname, get_cachedir, rc
 
-
+# 이 부분은 한번만 실행 해 주면 됨.
 font_path = './NanumGothicCoding.ttf'
-fonts_dir = os.path.join(os.path.dirname(matplotlib_fname()), 'fonts', 'ttf')
-font_cache_dir = get_cachedir()
-shutil.rmtree(font_cache_dir)
+target_font_path = os.path.join(fonts_dir, font_path)
+if not os.path.isfile(target_font_path):
+    fonts_dir = os.path.join(os.path.dirname(matplotlib_fname()), 'fonts', 'ttf')
+    shutil.copyfile(font_path, target_font_path)
+    shutil.rmtree(get_cachedir())
 
-shutil.copyfile(font_path, os.path.join(fonts_dir, font_path))
 fontlist = fm.findSystemFonts(fontpaths=os.getcwd(), fontext='ttf')
 
 if True:
